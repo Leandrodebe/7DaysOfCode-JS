@@ -1,30 +1,32 @@
-const numeroSecreto = 7;
-alert('Bem-vindo ao jogo do número secreto!!!');
-let regras = prompt('Você quer saber as regras ou já sabe jogar? Digite 1 para sim e 2 para não');
+const secretNumber = Math.floor(Math.random() * 10) + 1;
+alert('Welcome to the game of Secret Number!');
 
-if (regras == 1){
+let rules = prompt('Do you want to know the rules, or do you already know how to play? Type 1 for yes and 2 for no.');
 
-    alert('Você pode chutar qualquer número entra 1 e 10;');
-    alert('Você terá apenas 3 chances para acertar o número');
-    alert('Boa sorte, e divirta-se')
-
+if (parseInt(rules) === 1) {
+    alert('You can guess any number between 1 and 10.');
+    alert('You will have only 3 chances to guess the number correctly.');
+    alert('Good luck and have fun!');
 }
 
-alert('Vamo para o jogo');
+alert('Go to the game');
 
-let chute = parseInt(prompt('Chute um número de 1 a 10'));
-let qtdChutes = 0;
+let ranGuess = 0;
+let guess;
 
-while (qtdChutes == 3) {
+while (ranGuess < 3) {
+    guess = parseInt(prompt('Guess a number between 1 and 10.'));
 
-    if (qtdChutes == 3) {
-        alert(`Infelizmente você perdeu, o número secreto era ${numeroSecreto}!`);
-        qtdChutes ++;
+    if (guess === secretNumber) {
+        alert('Congratulations! You guessed the secret number! 🎉');
+        break; 
     } else {
-        qtdChutes ++;
-        alert('Você errou, tente novamente');
-        chute = parseInt(prompt('Chute um número de 1 a 10'));
-        
+        ranGuess++;
+        if (ranGuess === 3) {
+            alert(`Unfortunately, you lost! The secret number was ${secretNumber}.`);
+        } else {
+            alert('You were wrong, try again.');
+        }
     }
-
 }
+
